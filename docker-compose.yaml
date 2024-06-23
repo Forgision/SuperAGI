@@ -56,6 +56,18 @@ services:
 #    ports:
 #      - "5432:5432"
 
+  super__qdrant:
+    image: qdrant/qdrant
+    container_name: super__qdrant
+    volumes:
+      - ./qdrant_storage:/qdrant/storage:z
+      - ./qdrant.yml:/qdrant/config/production.yaml
+    networks:
+      - super_network
+    ports:
+      - 6333:6333 
+      - 6334:6334
+
   proxy:
     image: nginx:stable-alpine
     ports:
